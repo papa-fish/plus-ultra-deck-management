@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { getUser } from './utilities/users_service';
-import NavBar from './components/NavBar';
+
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
 
 import './App.css';
 
@@ -19,10 +22,12 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar 
+      <HomePage 
         user={user}
         onLogout={logout}
       />
+      <LoginPage onLogin={login} />
+      <SignUpPage />
     </div>
   );
 }

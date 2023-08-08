@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { Button, TextField } from "@mui/material";
+import "./LoginPage.css";
 
 export default function LoginPage({ onLogin }) {
 
@@ -36,20 +38,28 @@ export default function LoginPage({ onLogin }) {
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit} action="">
                 <label htmlFor="email">email</label>
-                <input 
-                    onChange={handleChange}
+                <TextField 
+                    onChange={handleChange} 
+                    id="outlined-basic" 
+                    label="enter email" 
+                    variant="outlined" 
+                    name="email" 
                     type="email"
-                    id="email" 
-                    name="email"
                 />
                 <label htmlFor="password">password</label>
-                <input 
-                    onChange={handleChange}
-                    type="password"
-                    id="password" 
-                    name="password"
+                <TextField 
+                    onChange={handleChange} 
+                    label="enter password" 
+                    variant="outlined" 
+                    name="password" 
+                    type="password" 
                 />
-                <button>login</button>
+                <Button 
+                    style={{ margin: '20px 0 0 0' }} 
+                    variant="contained"
+                    type="submit">
+                    login
+                </Button>
             </form>
             <p>Don't have an account? <a href="/users/signup">Sign up!</a></p>
         </section>

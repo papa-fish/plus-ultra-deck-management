@@ -1,0 +1,10 @@
+.search-box {
+    display: grid;
+    justify-content: space-around;
+}
+
+.unique-values {
+    display: grid;
+    justify-items: start;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}

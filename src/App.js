@@ -4,16 +4,9 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
+import HomePage from './pages/HomePage';
 
 import './App.css';
-
-function HomePage() {
-  return(
-    <div>
-      <h1>Home Page</h1>
-    </div>
-  );
-};
 
 function App() {
 
@@ -37,12 +30,12 @@ function App() {
       <Link to="/checklist">Checklist</Link>
       <Link to="/currentdeck">Current Deck</Link>
       { user ? <>
-        <p>Logged in as: {user.email}</p>
+        <li>Logged in as: {user.email}</li>
         <Link onClick={logout} to="/">Logout</Link> </> :
         <Link to="/users/login">Login</Link> 
       }
     </nav>
-
+    
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/users/login" element={<LoginPage onLogin={login}/>} />

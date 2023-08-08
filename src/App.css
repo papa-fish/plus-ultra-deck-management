@@ -1,5 +1,7 @@
 .App {
     text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .nav-bar {
@@ -21,6 +23,6 @@
 }
 
 .nav-bar a,
-.nav-bar p {
+.nav-bar li {
     padding-right: 50px;
 }

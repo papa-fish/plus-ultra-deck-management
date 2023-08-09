@@ -195,15 +195,34 @@ export default function HomePage() {
         };
     };
 
-    function handleChange(propertyName, e) {
-        const {
-            target: { value },
-        } = e;
+    function handleChange(propertyName, selectedValue) {
         switch (propertyName) {
             case 'cardSet':
-                setCardSet(
-                    typeof value === 'string' ? value.split(',') : value,
-                );
+                setCardSet(selectedValue);
+                break;
+            case 'cardName':
+                setCardName(selectedValue);
+                break;
+            case 'cardControl':
+                setCardControl(selectedValue);
+                break;
+            case 'cardDifficulty':
+                setCardDifficulty(selectedValue);
+                break;
+            case 'cardBlockModifier':
+                setCardBlockModifier(selectedValue);
+                break;
+            case 'cardAttackSpeed':
+                setCardAttackSpeed(selectedValue);
+                break;
+            case 'cardDamage':
+                setCardDamage(selectedValue);
+                break;
+            case 'cardHandSize':
+                setCardHandSize(selectedValue);
+                break;
+            default:
+                break;
         };
     };
 
@@ -246,14 +265,15 @@ export default function HomePage() {
                 <span className="span-grid-wrapper">
                     <TextField 
                         style={{ width: '200px', margin: 'auto' }}
+                        onChange={(e) => handleChange('cardName', e.target.value)}
                         label="enter card name" 
                         variant="outlined" 
                         name="card-name" 
                         type="text" 
                     />
                     <TextField 
-                        className="hand-size"
                         style={{ width: '200px', margin: 'auto' }}
+                        onChange={(e) => handleChange('cardHandSize', e.target.value)}
                         label="hand size" 
                         variant="outlined" 
                         name="hand-size" 
@@ -266,7 +286,7 @@ export default function HomePage() {
                             id="card-sets"
                             multiple
                             value={cardSet}
-                            onChange={handleChange}
+                            onChange={(e) => handleChange('cardSet', e.target.value)}
                             input={<OutlinedInput label="Tag" />}
                             renderValue={(selected) => selected.join(', ')}
                             MenuProps={MenuProps} >
@@ -395,6 +415,7 @@ export default function HomePage() {
                 <span className="control-difficulty-wrapper">
                     <TextField 
                         style={{ width: '200px', margin: 'auto' }}
+                        onChange={(e) => handleChange('cardControl', e.target.value)}
                         label="enter control value" 
                         variant="outlined" 
                         name="control" 
@@ -403,6 +424,7 @@ export default function HomePage() {
                     />
                     <TextField 
                         style={{ width: '200px', margin: 'auto' }}
+                        onChange={(e) => handleChange('cardDifficulty', e.target.value)}
                         label="enter difficulty value" 
                         variant="outlined" 
                         name="difficulty" 
@@ -445,6 +467,7 @@ export default function HomePage() {
                     <TextField 
                         className="number-input-field"
                         style={{ width: '200px', margin: 'auto' }}
+                        onChange={(e) => handleChange('cardBlockModifier', e.target.value)}
                         label="block modifier" 
                         variant="outlined" 
                         name="block-modifier" 
@@ -494,6 +517,7 @@ export default function HomePage() {
                     <TextField 
                         className="attack-speed"
                         style={{ width: '200px', margin: 'auto' }}
+                        onChange={(e) => handleChange('cardAttackSpeed', e.target.value)}
                         label="speed" 
                         variant="outlined" 
                         name="attack-speed" 
@@ -503,6 +527,7 @@ export default function HomePage() {
                     <TextField 
                         className="attack-damage"
                         style={{ width: '200px', margin: 'auto' }}
+                        onChange={(e) => handleChange('cardDamage', e.target.value)}
                         label="damage" 
                         variant="outlined" 
                         name="attack-damage" 

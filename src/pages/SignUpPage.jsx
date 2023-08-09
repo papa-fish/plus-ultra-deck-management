@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Button, TextField } from "@mui/material";
 
 export default function SignUpPage() {
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         email: "",
@@ -18,7 +21,10 @@ export default function SignUpPage() {
     function handleSubmit(e) {
         e.preventDefault();
         axios.post("/users/signup", formData)
-            .then(res => console.log(res.data))
+            .then(res => {
+                console.log(res.data)
+                navigate("/");
+            })
             .catch(err => {
                 console.log(err.response.status);
                 console.log(err.response.data);
@@ -31,8 +37,7 @@ export default function SignUpPage() {
         <section className="signup-page">
             <h1>sign up</h1>
             {error && <p>{error}</p>}
-            <form onSubmit={handleSubmit} action="">
-                <label htmlFor="email">email</label>
+            <form onSubmit={handleSubmit}>
                 <TextField 
                     onChange={handleChange} 
                     label="enter email" 
@@ -40,9 +45,9 @@ export default function SignUpPage() {
                     name="email" 
                     type="email"
                 />
-                <label htmlFor="password">password</label>
                 <TextField 
-                    onChange={handleChange} 
+                    onChange={handleChange}
+                    style={{ margin: '20px 0 0 0' }}
                     label="enter password" 
                     variant="outlined" 
                     name="password" 
@@ -55,7 +60,7 @@ export default function SignUpPage() {
                     login
                 </Button>
             </form>
-            <p>Already have an account? <a href="/users/login">Login here!</a></p>
+            <p>Already have an account? <Link to="/users/login">Login here!</Link></p>
         </section>
     );
 };

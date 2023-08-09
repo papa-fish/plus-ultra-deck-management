@@ -31,7 +31,7 @@ function App() {
       <Link to="/currentdeck">Current Deck</Link>
       { user ? <>
         <li>Logged in as: {user.email}</li>
-        <Link onClick={logout} to="/">Logout</Link> </> :
+        <Link onClick={logout} to="/users/login">Logout</Link> </> :
         <Link to="/users/login">Login</Link> 
       }
     </nav>

@@ -9,17 +9,6 @@ import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import "./HomePage.css"
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
 export default function HomePage() {
 
     const [cards, setCards] = useState([]);
@@ -289,7 +278,7 @@ export default function HomePage() {
                             onChange={(e) => handleChange('cardSet', e.target.value)}
                             input={<OutlinedInput label="Tag" />}
                             renderValue={(selected) => selected.join(', ')}
-                            MenuProps={MenuProps} >
+                            style={{width: '200px'}}>
                             {uniqueSets.map((set) => (
                                 <MenuItem key={set} value={set}>
                                     <Checkbox checked={cardSet.indexOf(set) > -1} />

@@ -29,3 +29,16 @@
 .number-input-field {
     width: 160px;
 }
+
+.span-grid-wrapper {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.control-difficulty-wrapper,
+.attack-speed-damage-wrapper {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+}

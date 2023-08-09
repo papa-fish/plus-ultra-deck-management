@@ -1,15 +1,52 @@
 import * as CardsApi from "../utilities/cards_api";
 import { useEffect, useState } from "react";
+import { Button, TextField, FormControlLabel } from "@mui/material";
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+import Select from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
 import "./HomePage.css"
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
 
 export default function HomePage() {
 
     const [cards, setCards] = useState([]);
+    const [cardName, setCardName] = useState("");
+    const [selectedAbilities, setSelectedAbilities] = useState([]);
+    const [selectedTypes, setSelectedTypes] = useState([]);
+    const [selectedRarities, setSelectedRarities] = useState([]);
+    const [cardSet, setCardSet] = useState([]);
+    const [selectedSymbols, setSelectedSymbols] = useState([]);
+    const [cardControl, setCardControl] = useState(1);
+    const [cardDifficulty, setCardDifficulty] = useState(0);
+    const [selectedKeywords, setSelectedKeywords] = useState([]);
+    const [cardBlockModifier, setCardBlockModifier] = useState(0);
+    const [selectedBlockZones, setSelectedBlockZones] = useState([]);
+    const [cardAttackSpeed, setCardAttackSpeed] = useState(0);
+    const [selectedAttackZones, setSelectedAttackZones] = useState([]);
+    const [cardDamage, setCardDamage] = useState(0);
+    const [cardHandSize, setCardHandSize] = useState(5);
 
     useEffect(() => {
         CardsApi.fetchCards()
             .then(res => setCards(res.data))
     }, []);
+
+    function handleSubmit(e) {
+
+    };
 
     function getUniqueAbilityCombinations(cards) {
         const uniqueAbilities = new Set();
@@ -88,6 +125,88 @@ export default function HomePage() {
         return Array.from(uniqueZones);
     };
 
+    function handleAbilityCheckbox(ability) {
+        return function(evt) {
+            if (evt.target.checked) {
+                setSelectedAbilities([...selectedAbilities, ability]);
+            } else {
+                setSelectedAbilities(selectedAbilities.filter((item) => item !== ability));
+            };
+        };
+    };
+
+    function handleTypeCheckbox(type) {
+        return function(evt) {
+            if (evt.target.checked) {
+                setSelectedTypes([...selectedTypes, type]);
+            } else {
+                setSelectedTypes(selectedTypes.filter((item) => item !== type));
+            };
+        };
+    };
+
+    function handleRarityCheckbox(rarity) {
+        return function(evt) {
+            if (evt.target.checked) {
+                setSelectedRarities([...selectedRarities, rarity]);
+            } else {
+                setSelectedRarities(selectedRarities.filter((item) => item !== rarity));
+            };
+        };
+    };
+
+    function handleSymbolCheckbox(symbol) {
+        return function(evt) {
+            if (evt.target.checked) {
+                setSelectedSymbols([...selectedSymbols, symbol]);
+            } else {
+                setSelectedSymbols(selectedSymbols.filter((item) => item !== symbol));
+            };
+        };
+    };
+
+    function handleKeywordCheckbox(keyword) {
+        return function(evt) {
+            if (evt.target.checked) {
+                setSelectedKeywords([...selectedKeywords, keyword]);
+            } else {
+                setSelectedKeywords(selectedKeywords.filter((item) => item !== keyword));
+            };
+        };
+    };
+
+    function handleBlockZoneCheckbox(zone) {
+        return function(evt) {
+            if (evt.target.checked) {
+                setSelectedBlockZones([...selectedBlockZones, zone]);
+            } else {
+                setSelectedBlockZones(selectedBlockZones.filter((item) => item !== zone));
+            };
+        };
+    };
+
+    function handleAttackZoneCheckbox(zone) {
+        return function(evt) {
+            if (evt.target.checked) {
+                setSelectedAttackZones([...selectedAttackZones, zone]);
+            } else {
+                setSelectedAttackZones(selectedAttackZones.filter((item) => item !== zone));
+            };
+        };
+    };
+
+    function handleChange(propertyName, e) {
+        const {
+            target: { value },
+        } = e;
+        switch (propertyName) {
+            case 'cardSet':
+                setCardSet(
+                    typeof value === 'string' ? value.split(',') : value,
+                );
+        };
+    };
+
     function customSort(a, b) {
         const order = ["Low", "Mid", "High"];
         return order.indexOf(a) - order.indexOf(b);
@@ -107,165 +226,331 @@ export default function HomePage() {
     const uniqueZones = getUniqueZones(cards);
 
     return(
-        <div className="search-box">
-            <label htmlFor="card-name"><strong>card name</strong></label>
-            <input name="card-name" type="text" />
+        <div>
+            <form className="search-box" onSubmit={handleSubmit}>
 
-            <label htmlFor="card-abilities"><strong>card text abilities</strong></label>
-            <span className="unique-values">
-                {uniqueAbilities.sort().map(ability => (
-                    <div key={ability}>
-                        <input 
-                            type="checkbox"
-                            id={ability}
-                            name={ability}
-                            value={ability}
-                        />
-                        <label htmlFor={ability}>{ability}</label>
+                <span className="span-grid-wrapper">
+                    <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"}} 
+                        id="card-name">Card Name</InputLabel>
+                        <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"}} 
+                        id="hand-size">Hand Size</InputLabel>
+                        <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"}} 
+                        id="card-sets">Set</InputLabel>
+                </span>
+                <span className="span-grid-wrapper">
+                    <TextField 
+                        style={{ width: '200px', margin: 'auto' }}
+                        label="enter card name" 
+                        variant="outlined" 
+                        name="card-name" 
+                        type="text" 
+                    />
+                    <TextField 
+                        className="hand-size"
+                        style={{ width: '200px', margin: 'auto' }}
+                        label="hand size" 
+                        variant="outlined" 
+                        name="hand-size" 
+                        type="number"
+                        InputProps={{inputProps: { min: 5, max: 7 }}}
+                    />
+                    <div>
+                        <Select
+                            labelId="card-sets"
+                            id="card-sets"
+                            multiple
+                            value={cardSet}
+                            onChange={handleChange}
+                            input={<OutlinedInput label="Tag" />}
+                            renderValue={(selected) => selected.join(', ')}
+                            MenuProps={MenuProps} >
+                            {uniqueSets.map((set) => (
+                                <MenuItem key={set} value={set}>
+                                    <Checkbox checked={cardSet.indexOf(set) > -1} />
+                                    <ListItemText primary={set} />
+                                </MenuItem>
+                            ))}
+                        </Select>
                     </div>
-                ))}
-            </span>
+                </span>
+                
+                <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="card-abilities">Card Text Abilities</InputLabel>
+                <span className="unique-values">
+                    {uniqueAbilities.sort().map((ability) => (
+                        <div key={ability}>
+                            <FormControlLabel
+                                style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                control={
+                                    <Checkbox
+                                        checked={selectedAbilities.includes(ability)}
+                                        onChange={handleAbilityCheckbox(ability)}
+                                        id={ability}
+                                        name={ability}
+                                        value={ability}
+                                    />
+                                }
+                                label={ability}
+                            />
+                        </div>
+                    ))}
+                </span>
 
-            <label htmlFor="card-type"><strong>type</strong></label>
-            <span className="unique-values">
-                {uniqueTypes.sort().map(type => (
-                    <div key={type}>
-                        <input 
-                            type="checkbox"
-                            id={type}
-                            name={type}
-                            value={type}
-                        />
-                        <label htmlFor={type}>{type}</label>
-                    </div>
-                ))}
-            </span>
+                <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="card-type">Card Type</InputLabel>
+                <span className="unique-values">
+                    {uniqueTypes.sort().map((type) => (
+                        <div key={type}>
+                            <FormControlLabel
+                                style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                control={
+                                    <Checkbox
+                                        checked={selectedTypes.includes(type)}
+                                        onChange={handleTypeCheckbox(type)}
+                                        id={type}
+                                        name={type}
+                                        value={type}
+                                    />
+                                }
+                                label={type}
+                            />
+                        </div>
+                    ))}
+                </span>
 
-            <label htmlFor="card-rarity"><strong>rarity</strong></label>
-            <span className="unique-values">
-                {uniqueRarities.sort().map(rarity => (
-                    <div key={rarity}>
-                        <input 
-                            type="checkbox"
-                            id={rarity}
-                            name={rarity}
-                            value={rarity}
-                        />
-                        <label htmlFor={rarity}>{rarity}</label>
-                    </div>
-                ))}
-            </span>
+                <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="card-rarity">Card Rarity</InputLabel>
+                <span className="unique-values">
+                    {uniqueRarities.sort().map((rarity) => (
+                        <div key={rarity}>
+                            <FormControlLabel
+                                style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                control={
+                                    <Checkbox
+                                        checked={selectedRarities.includes(rarity)}
+                                        onChange={handleRarityCheckbox(rarity)}
+                                        id={rarity}
+                                        name={rarity}
+                                        value={rarity}
+                                    />
+                                }
+                                label={rarity}
+                            />
+                        </div>
+                    ))}
+                </span>
 
-            <label htmlFor="card-sets"><strong>set</strong></label>
-            <select className="card-sets" name="card-sets" multiple>
-                {uniqueSets.map(set => (
-                    <option 
-                        key={set}    
-                        value={set}
-                        id={set}
-                        name={set}
-                    >{set}
-                    </option>
-                ))}
-            </select>
+                <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="card-symbols">Resource Symbols</InputLabel>
+                <span className="unique-values">
+                    {uniqueResourceSymbols.sort().map((symbol) => (
+                        <div key={symbol}>
+                            <FormControlLabel
+                                style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                control={
+                                    <Checkbox
+                                        checked={selectedSymbols.includes(symbol)}
+                                        onChange={handleSymbolCheckbox(symbol)}
+                                        id={symbol}
+                                        name={symbol}
+                                        value={symbol}
+                                    />
+                                }
+                                label={symbol}
+                            />
+                        </div>
+                    ))}
+                </span>
 
-            <label htmlFor="card-symbols"><strong>resource symbol</strong></label>
-            <span className="unique-values">
-                {uniqueResourceSymbols.sort().map(symbol => (
-                    <div key={symbol}>
-                        <input 
-                            type="checkbox" 
-                            id={symbol} 
-                            name={symbol} 
-                            value={symbol} 
-                        />
-                        <label htmlFor={symbol}>{symbol}</label>
-                    </div>
-                ))}
-            </span>
-            <label htmlFor="control"><strong>control</strong></label>
-            <input name="control" type="number" min={0} max={6} />
+                <span className="control-difficulty-wrapper">
+                    <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="control">Control</InputLabel>
+                    <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="difficulty">Difficulty</InputLabel>
+                </span> 
+                <span className="control-difficulty-wrapper">
+                    <TextField 
+                        style={{ width: '200px', margin: 'auto' }}
+                        label="enter control value" 
+                        variant="outlined" 
+                        name="control" 
+                        type="number"
+                        InputProps={{inputProps: { min: 1, max: 6 }}}
+                    />
+                    <TextField 
+                        style={{ width: '200px', margin: 'auto' }}
+                        label="enter difficulty value" 
+                        variant="outlined" 
+                        name="difficulty" 
+                        type="number"
+                        InputProps={{inputProps: { min: 0, max: 7 }}}
+                    />
+                </span>
 
-            <label htmlFor="difficulty"><strong>difficulty</strong></label>
-            <input name="difficulty" type="number" min={0} max={7} />
+                <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="keywords">Keywords</InputLabel>
+                <span className="unique-values">
+                    {uniqueKeywords.sort().map((keyword) => (
+                        <div key={keyword}>
+                            <FormControlLabel
+                                style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                control={
+                                    <Checkbox
+                                        checked={selectedKeywords.includes(keyword)}
+                                        onChange={handleKeywordCheckbox(keyword)}
+                                        id={keyword}
+                                        name={keyword}
+                                        value={keyword}
+                                    />
+                                }
+                                label={keyword}
+                            />
+                        </div>
+                    ))}
+                </span>
 
-            <label htmlFor="keywords"><strong>keyword</strong></label>
-            <span className="unique-values">
-                {uniqueKeywords.sort().map(keyword => (
-                    <div key={keyword}>
-                        <input 
-                            type="checkbox"
-                            id={keyword}
-                            name={keyword}
-                            value={keyword}
-                        />
-                        <label htmlFor={keyword}>{keyword}</label>
-                    </div>
-                ))}
-            </span>
+                <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="block-modifier">Block Modifer</InputLabel>
+                <span>
+                    <TextField 
+                        className="number-input-field"
+                        style={{ width: '200px', margin: 'auto' }}
+                        label="block modifier" 
+                        variant="outlined" 
+                        name="block-modifier" 
+                        type="number"
+                        InputProps={{inputProps: { min: 0, max: 5 }}}
+                />
+                </span>
 
-            <label htmlFor="block-modifier"><strong>block modifier</strong></label>
-            <span>
-                <select className="comparison-icons" name="block-modifier" id="block-modifier">
-                    <option value="=">=</option>
-                    <option value=">">&gt;</option>
-                    <option value="<">&lt;</option>
-                </select>
-                <input className="number-input-field" type="number" min={0} max={5} />
-            </span>
+                <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="block-zones">Block Zone</InputLabel>
+                <span className="unique-values-zones">
+                    {uniqueZones.sort(customSort).map((zone) => (
+                        <div key={zone}>
+                            <FormControlLabel
+                                style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                control={
+                                    <Checkbox
+                                        checked={selectedBlockZones.includes(zone)}
+                                        onChange={handleBlockZoneCheckbox(zone)}
+                                        id={zone}
+                                        name={zone}
+                                        value={zone}
+                                    />
+                                }
+                                label={zone}
+                            />
+                        </div>
+                    ))}
+                </span>
 
-            <label htmlFor="block-zones"><strong>block zone</strong></label>
-            <span className="unique-values-zones">
-                {uniqueZones.sort(customSort).map(zone => (
-                    <div key={zone}>
-                        <input 
-                            type="checkbox"
-                            id={zone}
-                            name={zone}
-                            value={zone}
-                        />
-                    <label htmlFor={zone}>{zone}</label>
-                    </div>
-                ))}
-            </span>
-
-            <label htmlFor="attack-speed"><strong>attack speed</strong></label>
-            <span>
-                <select className="comparison-icons" name="attack-speed" id="attack-speed">
-                    <option value="=">=</option>
-                    <option value=">">&gt;</option>
-                    <option value="<">&lt;</option>
-                </select>
-                <input className="number-input-field" type="number" min={0} max={6} />
-            </span>
-            
-            <label htmlFor="attack-zones"><strong>attack zone</strong></label>
-            <span className="unique-values-zones">
-                {uniqueZones.sort(customSort).map(zone => (
-                    <div key={zone}>
-                        <input 
-                            type="checkbox"
-                            id={zone}
-                            name={zone}
-                            value={zone}
-                        />
-                        <label htmlFor={zone}>{zone}</label>
-                    </div>
-                ))}
-            </span>
-
-            <label htmlFor="attack-damage"><strong>attack damage</strong></label>
-            <div>
-                <select className="comparison-icons" name="attack-damage" id="attack-damage">
-                    <option value="=">=</option>
-                    <option value=">">&gt;</option>
-                    <option value="<">&lt;</option>
-                </select>
-                <input className="number-input-field" type="number" min={0} max={10} />
-            </div>
-            
-            <label htmlFor="hand-size"><strong>character hand-size</strong></label>
-            <input className="hand-size" name="hand-size" type="number" min={5} max={7} />
+                <span className="attack-speed-damage-wrapper">
+                    <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="attack-speed">Attack Speed</InputLabel>
+                    <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                        id="attack-damage">Attack Damage</InputLabel>
+                </span>
+                <span className="attack-speed-damage-wrapper">
+                    <TextField 
+                        className="attack-speed"
+                        style={{ width: '200px', margin: 'auto' }}
+                        label="speed" 
+                        variant="outlined" 
+                        name="attack-speed" 
+                        type="number"
+                        InputProps={{inputProps: { min: 0, max: 6 }}}
+                    />
+                    <TextField 
+                        className="attack-damage"
+                        style={{ width: '200px', margin: 'auto' }}
+                        label="damage" 
+                        variant="outlined" 
+                        name="attack-damage" 
+                        type="number"
+                        InputProps={{inputProps: { min: 0, max: 10 }}}
+                    />
+                </span>
+                            
+                <InputLabel style={{
+                    alignSelf: "center", 
+                    margin: "20px 0"
+                }} 
+                id="attack-zones">Attack Zones</InputLabel>
+                <span className="unique-values-zones">
+                    {uniqueZones.sort(customSort).map((zone) => (
+                        <div key={zone}>
+                            <FormControlLabel
+                                style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                control={
+                                    <Checkbox
+                                        checked={selectedAttackZones.includes(zone)}
+                                        onChange={handleAttackZoneCheckbox(zone)}
+                                        id={zone}
+                                        name={zone}
+                                        value={zone}
+                                    />
+                                }
+                                label={zone}
+                            />
+                        </div>
+                    ))}
+                </span>
+                <span>
+                    <Button
+                        className="search-btn"
+                        style={{ margin: '20px auto', width: '200px', backgroundColor: 'green' }}
+                        variant="contained"
+                        type="submit">
+                        Search
+                    </Button>
+                    <Button
+                        className="search-btn"
+                        style={{ margin: '0 0 0 20px', width: '200px', backgroundColor: 'red' }}
+                        variant="contained">
+                        Reset
+                    </Button>
+                </span>
+            </form>
         </div>
     );
 };

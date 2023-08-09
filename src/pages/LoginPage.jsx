@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Button, TextField } from "@mui/material";
 import "./LoginPage.css";
 
 export default function LoginPage({ onLogin }) {
 
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
-
     const [error, setError] = useState("");
 
     function handleChange(e) {
@@ -23,6 +25,7 @@ export default function LoginPage({ onLogin }) {
                 let token = res.data;
                 localStorage.setItem("token", token);
                 onLogin(formData);
+                navigate("/");
             })
             .catch(err => {
                 console.log(err.response.status);
@@ -36,8 +39,7 @@ export default function LoginPage({ onLogin }) {
         <section className="login-page">
             <h1>login</h1>
             {error && <p>{error}</p>}
-            <form onSubmit={handleSubmit} action="">
-                <label htmlFor="email">email</label>
+            <form onSubmit={handleSubmit} >
                 <TextField 
                     onChange={handleChange} 
                     id="outlined-basic" 
@@ -46,9 +48,9 @@ export default function LoginPage({ onLogin }) {
                     name="email" 
                     type="email"
                 />
-                <label htmlFor="password">password</label>
                 <TextField 
                     onChange={handleChange} 
+                    style={{ margin: '20px 0 0 0' }}
                     label="enter password" 
                     variant="outlined" 
                     name="password" 
@@ -58,10 +60,10 @@ export default function LoginPage({ onLogin }) {
                     style={{ margin: '20px 0 0 0' }} 
                     variant="contained"
                     type="submit">
-                    login
+                    Login
                 </Button>
             </form>
-            <p>Don't have an account? <a href="/users/signup">Sign up!</a></p>
+            <p>Don't have an account? <Link to="/users/signup">Sign up!</Link></p>
         </section>
     );
 };

@@ -78,6 +78,21 @@ export default function HomePage() {
         return Array.from(uniqueSets);
     };
 
+    function getUniqueZones(cards) {
+        const uniqueZones = new Set();
+
+        for (const card of cards) {
+            uniqueZones.add(card.block.zone)
+        };
+
+        return Array.from(uniqueZones);
+    };
+
+    function customSort(a, b) {
+        const order = ["Low", "Mid", "High"];
+        return order.indexOf(a) - order.indexOf(b);
+    };
+
     const uniqueAbilityCombinations = getUniqueAbilityCombinations(cards);
     const uniqueResourceCombinations = getUniqueResourceCombinations(cards);
     const uniqueKeywordCombinations = getUniqueKeywordCombinations(cards);
@@ -89,12 +104,14 @@ export default function HomePage() {
     const uniqueTypes = getUniqueTypes(cards);
     const uniqueRarities = getUniqueRarities(cards);
     const uniqueSets = getUniqueSets(cards);
+    const uniqueZones = getUniqueZones(cards);
 
     return(
         <div className="search-box">
-            <label htmlFor=""><strong>card name</strong></label>
-            <input type="text" />
-            <label htmlFor=""><strong>card text abilities</strong></label>
+            <label htmlFor="card-name"><strong>card name</strong></label>
+            <input name="card-name" type="text" />
+
+            <label htmlFor="card-abilities"><strong>card text abilities</strong></label>
             <span className="unique-values">
                 {uniqueAbilities.sort().map(ability => (
                     <div key={ability}>
@@ -108,7 +125,8 @@ export default function HomePage() {
                     </div>
                 ))}
             </span>
-            <label htmlFor=""><strong>type</strong></label>
+
+            <label htmlFor="card-type"><strong>type</strong></label>
             <span className="unique-values">
                 {uniqueTypes.sort().map(type => (
                     <div key={type}>
@@ -122,7 +140,8 @@ export default function HomePage() {
                     </div>
                 ))}
             </span>
-            <label htmlFor=""><strong>rarity</strong></label>
+
+            <label htmlFor="card-rarity"><strong>rarity</strong></label>
             <span className="unique-values">
                 {uniqueRarities.sort().map(rarity => (
                     <div key={rarity}>
@@ -136,18 +155,21 @@ export default function HomePage() {
                     </div>
                 ))}
             </span>
-            <label htmlFor="sets"><strong>set</strong></label>
-            <select name="sets" id="sets" multiple>
+
+            <label htmlFor="card-sets"><strong>set</strong></label>
+            <select className="card-sets" name="card-sets" multiple>
                 {uniqueSets.map(set => (
-                <option 
-                    key={set}    
-                    value={set}
-                    id={set}
-                    name={set}
-                >{set}</option>
-            ))}
+                    <option 
+                        key={set}    
+                        value={set}
+                        id={set}
+                        name={set}
+                    >{set}
+                    </option>
+                ))}
             </select>
-            <label htmlFor=""><strong>resource symbol</strong></label>
+
+            <label htmlFor="card-symbols"><strong>resource symbol</strong></label>
             <span className="unique-values">
                 {uniqueResourceSymbols.sort().map(symbol => (
                     <div key={symbol}>
@@ -161,9 +183,13 @@ export default function HomePage() {
                     </div>
                 ))}
             </span>
-            <label htmlFor=""><strong>control</strong></label>
-            <label htmlFor=""><strong>difficulty</strong></label>
-            <label htmlFor=""><strong>keyword</strong></label>
+            <label htmlFor="control"><strong>control</strong></label>
+            <input name="control" type="number" min={0} max={6} />
+
+            <label htmlFor="difficulty"><strong>difficulty</strong></label>
+            <input name="difficulty" type="number" min={0} max={7} />
+
+            <label htmlFor="keywords"><strong>keyword</strong></label>
             <span className="unique-values">
                 {uniqueKeywords.sort().map(keyword => (
                     <div key={keyword}>
@@ -177,12 +203,69 @@ export default function HomePage() {
                     </div>
                 ))}
             </span>
-            <label htmlFor=""><strong>block modifier</strong></label>
-            <label htmlFor=""><strong>block zone</strong></label>
-            <label htmlFor=""><strong>attack speed</strong></label>
-            <label htmlFor=""><strong>attack zone</strong></label>
-            <label htmlFor=""><strong>attack damage</strong></label>
-            <label htmlFor=""><strong>character hand-size</strong></label>
+
+            <label htmlFor="block-modifier"><strong>block modifier</strong></label>
+            <span>
+                <select className="comparison-icons" name="block-modifier" id="block-modifier">
+                    <option value="=">=</option>
+                    <option value=">">&gt;</option>
+                    <option value="<">&lt;</option>
+                </select>
+                <input className="number-input-field" type="number" min={0} max={5} />
+            </span>
+
+            <label htmlFor="block-zones"><strong>block zone</strong></label>
+            <span className="unique-values-zones">
+                {uniqueZones.sort(customSort).map(zone => (
+                    <div key={zone}>
+                        <input 
+                            type="checkbox"
+                            id={zone}
+                            name={zone}
+                            value={zone}
+                        />
+                    <label htmlFor={zone}>{zone}</label>
+                    </div>
+                ))}
+            </span>
+
+            <label htmlFor="attack-speed"><strong>attack speed</strong></label>
+            <span>
+                <select className="comparison-icons" name="attack-speed" id="attack-speed">
+                    <option value="=">=</option>
+                    <option value=">">&gt;</option>
+                    <option value="<">&lt;</option>
+                </select>
+                <input className="number-input-field" type="number" min={0} max={6} />
+            </span>
+            
+            <label htmlFor="attack-zones"><strong>attack zone</strong></label>
+            <span className="unique-values-zones">
+                {uniqueZones.sort(customSort).map(zone => (
+                    <div key={zone}>
+                        <input 
+                            type="checkbox"
+                            id={zone}
+                            name={zone}
+                            value={zone}
+                        />
+                        <label htmlFor={zone}>{zone}</label>
+                    </div>
+                ))}
+            </span>
+
+            <label htmlFor="attack-damage"><strong>attack damage</strong></label>
+            <div>
+                <select className="comparison-icons" name="attack-damage" id="attack-damage">
+                    <option value="=">=</option>
+                    <option value=">">&gt;</option>
+                    <option value="<">&lt;</option>
+                </select>
+                <input className="number-input-field" type="number" min={0} max={10} />
+            </div>
+            
+            <label htmlFor="hand-size"><strong>character hand-size</strong></label>
+            <input className="hand-size" name="hand-size" type="number" min={5} max={7} />
         </div>
     );
 };

@@ -8,3 +8,24 @@
     justify-items: start;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
+
+.unique-values-zones {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.search-box > input,
+.card-sets,
+.search-box option {
+    width: 200px;
+    margin: auto;
+}
+
+.comparison-icons {
+    margin-right: 10px;
+}
+
+.number-input-field {
+    width: 160px;
+}

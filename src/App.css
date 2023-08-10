@@ -5,6 +5,7 @@
     box-sizing: border-box;
     background: rgb(255,222,0);
     background: radial-gradient(circle, rgba(255,222,0,0.7035189075630253) 0%, rgba(238,87,29,0.5802696078431373) 100%);
+    padding-bottom: 1rem;
 }
 
 .nav-bar {

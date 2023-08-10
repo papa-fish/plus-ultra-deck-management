@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# My Hero Academia CCG Card Management Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the My Hero Academia Collectible Card Game (MHA CCG) Card Management Website! This platform is designed to help you search, build, and manage your cards for the MHA CCG. Whether you're a seasoned player or just starting out, our website provides you with tools to enhance your card collecting and deck-building experience.
 
-## Available Scripts
+## Screenshots
+<details>
+<summary>Images of page mockup, this is subject to undergo drastic changes</summary>
 
-In the project directory, you can run:
+### Filter Options
+[Filter Options](https://i.imgur.com/8p8eqR8.png)
+### Results Page
+[Results Page](https://i.imgur.com/izA8wkS.png)
+### Enlarge Image
+[Enlarged Image](https://i.imgur.com/6IKmfFB.png)
+</details>
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To get started with the MHA CCG Card Management Website, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Click the login button on the nav bar to login, otherwise follow the link to sign up.
+2. Navigate yourself to the home page and use the expansive filtering options.
+3. Browse through your results and begin building your MHA CCG decks!
 
-### `npm test`
+## Implemented Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Card Search and Filter
+Easily search and filter through the extensive collection of MHA CCG cards. Our updated API currently only includes Set 5 (Undaunted Raid). Find the cards you need quickly and efficiently.
+You can easily clear all the fields with one click of the reset button, this is to improve the user experience to ensure a more enjoyable time when searching for specific cards you may want to add to your decks. Hover of the card in the results page to enlarge it, make it easier to read.
 
-### `npm run build`
+## Ice Box Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Checklist Page
+The checklist page is a valuable resource for categorizing cards from different sets. Use checkboxes to track which cards you own and which ones you're missing. Keep tabs on the number of copies you possess, making it simple to complete your collection.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### API Update
+We are working hard to ensure that the API will include all existing sets for MHA CCG. This feature takes time, and requires meticulous data entry, so please be patient with us as we bring updates.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Deck Building
+With the "Build Your Deck" functionality, you can create and customize your own decks. The enhanced add and remove buttons on the results page streamline the deck-building process, allowing you to assemble your perfect deck with ease.
 
-### `npm run eject`
+### Comments and Likes
+Engage with the MHA CCG community by leaving comments on decks created by other players. Express your thoughts, share strategies, and provide feedback. The likes feature allows you to show appreciation for impressive deck compositions.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Trending Decks
+Stay updated on the latest trends in the MHA CCG world with the "Trending" page. Explore the most recently created decks, discover the decks with the highest number of likes, and find out which decks are generating the most buzz based on comments.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Access Restrictions
+To ensure a smooth experience, certain features will be restricted and will require an account to access them. However, you can still enjoy filtering and searching for cards without an account.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Technologies Used
+- Frontend: React, React Router, Material-UI (MUI) components
+- Backend: Express.JS, MongoDB, Mongoose
+- API: The API has been meticulously curated, containing all available cards for the MHA CCG. The data entry process includes manual data input, along with a custom script for generating image URL links efficiently.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Future Enhancements
 
-## Learn More
+We are committed to continuously improving your experience on our platform. Future enhancements may include:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Advanced card sorting options
+- Enhanced user profiles with deck history and statistics
+- Integration with social media platforms for sharing decks
+- Real-time notifications for comments, likes, and trending decks
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+We appreciate your support and feedback as we work to make the MHA CCG Card Management Website an indispensable tool for every MHA CCG enthusiast.
 
-### Code Splitting
+## Contact Us
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+If you have any questions, suggestions, or feedback, please don't hesitate to contact me at [Papa Fish](mailto:contact@lukechristophermoore@gmail.com)
 
-### Analyzing the Bundle Size
+Thank you for choosing the My Hero Academia CCG Card Management Website!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---

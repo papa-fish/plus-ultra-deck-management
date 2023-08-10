@@ -218,17 +218,7 @@ export default function HomePage() {
             }
         }
     };
-
-    function handleStringState(value, currentState, setCurrentState) {
-        return function(event) {
-            if (event.target.value) {
-                setCurrentState([...currentState, value]);
-            } else {
-                setCurrentState(currentState.filter((item) => item !== value));
-            }
-        }
-    };
-
+    
     // function to handle all input boxes
     function handleChange(propertyName, selectedValue) {
         const value = selectedValue === '' ? -1 : selectedValue;

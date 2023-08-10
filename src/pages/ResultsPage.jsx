@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import "./ResultsPage.css";
@@ -6,11 +5,7 @@ import "./ResultsPage.css";
 export default function Results() {
 
     const { state } = useLocation();
-
-    let results = state.filteredResults
-
-    console.log(results)
-
+    let results = state.filteredResults;
 
     return(
         <div className="results-wrapper">

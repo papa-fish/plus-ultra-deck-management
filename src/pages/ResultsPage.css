@@ -1,0 +1,36 @@
+.results-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+    gap: 1rem;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.results-img-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.results-wrapper img {
+    width: 300px;
+    border-radius: 1.5rem;
+    box-shadow: 0 6.67px 13.34px #021c29;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s;
+}
+
+img:hover {
+    position: relative;
+    z-index: 1;
+    transform: scale(1.5);
+  }
+
+
+.results-btn-wrapper {
+    position: relative;
+    z-index: 0;
+    display: block;
+    margin-top: 1rem;
+}

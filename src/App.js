@@ -5,6 +5,8 @@ import { Link, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import HomePage from './pages/HomePage';
+import ResultsPage from './pages/ResultsPage';
+
 
 import './App.css';
 
@@ -40,6 +42,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/users/login" element={<LoginPage onLogin={login}/>} />
       <Route path="/users/signup" element={<SignUpPage />} />
+      <Route path="/results" element={<ResultsPage />} />
     </Routes>
 
     <footer>

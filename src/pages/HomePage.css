@@ -30,7 +30,7 @@
     width: 160px;
 }
 
-.span-grid-wrapper {
+.div-grid-wrapper {
     display: grid;
     justify-items: center;
     grid-template-columns: 1fr 1fr 1fr;

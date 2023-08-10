@@ -1,9 +1,9 @@
 .results-wrapper {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
     gap: 1rem;
     margin: 2rem 2rem;
-    position: relative;
 }
 
 .card-wrapper {
@@ -32,7 +32,6 @@ img:hover {
     z-index: 1;
     transform: scale(1.6);
   }
-
 
 .results-btn-wrapper {
     position: relative;

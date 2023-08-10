@@ -46,12 +46,7 @@ function App() {
         <Route path="/users/signup" element={<SignUpPage />} />
         <Route path="/results" element={<ResultsPage />} />
       </Routes>
-
-      <footer>
-        &copy; {new Date().getFullYear()}
-      </footer>
-
-      </div>
+    </div>
   );
 }
 

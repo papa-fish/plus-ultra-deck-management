@@ -3,12 +3,14 @@
     font-family: 'Lato', sans-serif;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+    background: rgb(255,222,0);
+    background: radial-gradient(circle, rgba(255,222,0,0.7035189075630253) 0%, rgba(238,87,29,0.5802696078431373) 100%);
 }
 
 .nav-bar {
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
     list-style: none;
     text-decoration: none;
     background: rgb(255,222,0);
@@ -17,6 +19,13 @@
     padding: 20px 0;
     font-size: larger;
     font-weight: bold;
+    border-bottom: 2px solid black;
+}
+
+#logo {
+    position:absolute;
+    left: 5px;
+    top: 5px;
 }
 
 .nav-bar a:visited {

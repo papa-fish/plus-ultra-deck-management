@@ -29,9 +29,10 @@ export default function Results() {
                                 Add
                             </Button>
                             <TextField 
-                                style={{ width: '100px', margin: ' 10px 0 0 10px' }}
+                                style={{ width: '100px', margin: ' 18px 0 0 10px' }}
                                 // onChange={(e) => handleChange('cardControl', e.target.value)}
-                                label="add amountt" 
+                                size="small"
+                                label="add items" 
                                 variant="outlined" 
                                 name="card-amt" 
                                 type="number"
@@ -47,9 +48,10 @@ export default function Results() {
                                 Remove
                             </Button>
                             <TextField 
-                                style={{ width: '100px', margin: ' 10px 0 0 10px' }}
+                                style={{ width: '100px', margin: ' 18px 0 0 10px' }}
                                 // onChange={(e) => handleChange('cardControl', e.target.value)}
-                                label="remove amountt" 
+                                size="small"
+                                label="remove items" 
                                 variant="outlined" 
                                 name="remove-amt" 
                                 type="number"

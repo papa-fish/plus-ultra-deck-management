@@ -281,326 +281,335 @@ export default function HomePage() {
     return(
         <div>
             <form className="search-box" onSubmit={handleFilterSubmit}>
-                <div className="div-grid-wrapper">
-                    <div id="card-name-wrapper">
-                        <InputLabel style={{
+                <div className="border-right">
+                    <div className="div-grid-wrapper">
+                        <div id="card-name-wrapper">
+                            <InputLabel style={{
+                                    alignSelf: "center", 
+                                    margin: "20px 0"}} 
+                                id="card-name">Card Name</InputLabel>
+                            <TextField 
+                                style={{ 
+                                    width: '200px', 
+                                    margin: 'auto', 
+                                    color: 'black'
+                                }}
+                                onChange={(e) => setCardName(e.target.value)}
+                                label="enter card name" 
+                                margin="dense"
+                                variant="outlined" 
+                                name="card-name" 
+                                type="text" 
+                            />
+                        </div>
+                        <div id="hand-size-wrapper">
+                            <InputLabel style={{
                                 alignSelf: "center", 
                                 margin: "20px 0"}} 
-                            id="card-name">Card Name</InputLabel>
-                        <TextField 
-                            style={{ width: '200px', margin: 'auto' }}
-                            onChange={(e) => setCardName(e.target.value)}
-                            value={cardName}
-                            label="enter card name" 
-                            variant="outlined" 
-                            name="card-name" 
-                            type="text" 
-                        />
+                            id="hand-size">Hand Size</InputLabel>
+                            <TextField 
+                                style={{ width: '200px', margin: 'auto' }}
+                                onChange={(e) => handleChange('cardHandSize', e.target.value)}
+                                label="hand size" 
+                                variant="outlined" 
+                                name="hand-size" 
+                                type="number"
+                                InputProps={{inputProps: { min: 5, max: 7 }}}
+                            />
+                        </div>
+                        <div id="card-sets-wrapper">
+                            <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "20px 0"}} 
+                            id="card-sets">Set</InputLabel>
+                            <Select
+                                labelId="card-sets"
+                                id="card-sets"
+                                multiple
+                                value={cardSet}
+                                onChange={(e) => setCardSet(e.target.value)}
+                                input={<OutlinedInput label="Tag" />}
+                                renderValue={(selected) => selected.join(', ')}
+                                style={{width: '200px'}}>
+                                {uniqueSets.map((set) => (
+                                    <MenuItem key={set} value={set}>
+                                        <Checkbox checked={cardSet.indexOf(set) > -1} />
+                                        <ListItemText primary={set} />
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </div>
                     </div>
-                    <div id="hand-size-wrapper">
-                        <InputLabel style={{
-                            alignSelf: "center", 
-                            margin: "20px 0"}} 
-                        id="hand-size">Hand Size</InputLabel>
-                        <TextField 
-                            style={{ width: '200px', margin: 'auto' }}
-                            onChange={(e) => handleChange('cardHandSize', e.target.value)}
-                            label="hand size" 
-                            variant="outlined" 
-                            name="hand-size" 
-                            type="number"
-                            InputProps={{inputProps: { min: 5, max: 7 }}}
-                        />
+                    
+                    <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "20px 0"
+                            }} 
+                            id="card-abilities">Card Text Abilities</InputLabel>
+                    <span className="unique-values" id="ability-wrapper">
+                        {uniqueAbilities.sort().map((ability) => (
+                            <div key={ability}>
+                                <FormControlLabel
+                                    style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                    control={
+                                        <Checkbox
+                                            checked={selectedAbilities.includes(ability)}
+                                            onChange={handleArrayState(ability, selectedAbilities, setSelectedAbilities)}
+                                            id={ability}
+                                            name={ability}
+                                            value={ability}
+                                        />
+                                    }
+                                    label={ability}
+                                />
+                            </div>
+                        ))}
+                    </span>
+
+                    <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "20px 0"
+                            }} 
+                            id="card-type">Card Type</InputLabel>
+                    <span className="unique-values" id="types-wrapper">
+                        {uniqueTypes.sort().map((type) => (
+                            <div key={type}>
+                                <FormControlLabel
+                                    style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                    control={
+                                        <Checkbox
+                                            checked={selectedTypes.includes(type)}
+                                            onChange={handleArrayState(type, selectedTypes, setSelectedTypes)}
+                                            id={type}
+                                            name={type}
+                                            value={type}
+                                        />
+                                    }
+                                    label={type}
+                                />
+                            </div>
+                        ))}
+                    </span>
+
+                    <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "20px 0"
+                            }} 
+                            id="card-rarity">Card Rarity</InputLabel>
+                    <span className="unique-values" id="rarity-wrapper">
+                        {uniqueRarities.sort().map((rarity) => (
+                            <div key={rarity}>
+                                <FormControlLabel
+                                    style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                    control={
+                                        <Checkbox
+                                            checked={selectedRarities.includes(rarity)}
+                                            onChange={handleArrayState(rarity, selectedRarities, setSelectedRarities)}
+                                            id={rarity}
+                                            name={rarity}
+                                            value={rarity}
+                                        />
+                                    }
+                                    label={rarity}
+                                />
+                            </div>
+                        ))}
+                    </span>
+
+                    <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "20px 0"
+                            }} 
+                            id="card-symbols">Resource Symbols</InputLabel>
+                    <span className="unique-values" id="symbol-wrapper">
+                        {uniqueResourceSymbols.sort().map((symbol) => (
+                            <div key={symbol}>
+                                <FormControlLabel
+                                    style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                    control={
+                                        <Checkbox
+                                            checked={selectedSymbols.includes(symbol)}
+                                            onChange={handleArrayState(symbol, selectedSymbols, setSelectedSymbols)}
+                                            id={symbol}
+                                            name={symbol}
+                                            value={symbol}
+                                        />
+                                    }
+                                    label={symbol}
+                                />
+                            </div>
+                        ))}
+                    </span>
+                </div>
+                <div>
+                    <div className="control-difficulty-wrapper">
+                        <div id="control-wrapper">
+                            <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "20px 0"
+                            }} 
+                            id="control">Control</InputLabel>
+                            <TextField 
+                                style={{ width: '200px', margin: 'auto' }}
+                                onChange={(e) => handleChange('cardControl', e.target.value)}
+                                label="enter control value" 
+                                variant="outlined" 
+                                name="control" 
+                                type="number"
+                                InputProps={{inputProps: { min: 1, max: 6 }}}
+                            />
+                        </div>
+                        <div id="difficulty-wrapper">
+                            <InputLabel style={{
+                                    alignSelf: "center", 
+                                    margin: "20px 0"
+                            }} 
+                            id="difficulty">Difficulty</InputLabel>
+                            <TextField 
+                                style={{ width: '200px', margin: 'auto' }}
+                                onChange={(e) => handleChange('cardDifficulty', e.target.value)}
+                                label="enter difficulty value" 
+                                variant="outlined" 
+                                name="difficulty" 
+                                type="number"
+                                InputProps={{inputProps: { min: 0, max: 7 }}}
+                            />
+                        </div>
                     </div>
-                    <div id="card-sets-wrapper">
-                        <InputLabel style={{
-                            alignSelf: "center", 
-                            margin: "20px 0"}} 
-                        id="card-sets">Set</InputLabel>
-                        <Select
-                            labelId="card-sets"
-                            id="card-sets"
-                            multiple
-                            value={cardSet}
-                            onChange={(e) => setCardSet(e.target.value)}
-                            input={<OutlinedInput label="Tag" />}
-                            renderValue={(selected) => selected.join(', ')}
-                            style={{width: '200px'}}>
-                            {uniqueSets.map((set) => (
-                                <MenuItem key={set} value={set}>
-                                    <Checkbox checked={cardSet.indexOf(set) > -1} />
-                                    <ListItemText primary={set} />
-                                </MenuItem>
+
+                    <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "20px 0"
+                            }} 
+                            id="keywords">Keywords</InputLabel>
+                    <span className="unique-values" id="keywords-wrapper">
+                        {uniqueKeywords.sort().map((keyword) => (
+                            <div key={keyword}>
+                                <FormControlLabel
+                                    style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                    control={
+                                        <Checkbox
+                                            checked={selectedKeywords.includes(keyword)}
+                                            onChange={handleArrayState(keyword, selectedKeywords, setSelectedKeywords)}
+                                            id={keyword}
+                                            name={keyword}
+                                            value={keyword}
+                                        />
+                                    }
+                                    label={keyword}
+                                />
+                            </div>
+                        ))}
+                    </span>
+
+                    <div className="block-mod-wrapper">
+                        <div className="align-right-fields">
+                            <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "80px 45px 20px 0"
+                            }} 
+                            id="block-modifier">Block Modifer</InputLabel>
+                            <TextField 
+                                className="number-input-field"
+                                style={{ width: '200px', margin: 'auto' }}
+                                onChange={(e) => handleChange('cardBlockModifier', e.target.value)}
+                                label="block modifier" 
+                                variant="outlined" 
+                                name="block-modifier" 
+                                type="number"
+                                InputProps={{inputProps: { min: 0, max: 5 }}}
+                            />
+                        </div>
+                        <div className="margin-top-auto">
+                            <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "20px 0"
+                            }} 
+                            id="block-zones">Block Zone</InputLabel>
+                            {uniqueZones.sort(customSort).map((zone) => (
+                                <span key={zone}>
+                                    <FormControlLabel
+                                        style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                        control={
+                                            <Checkbox
+                                                checked={selectedBlockZones.includes(zone)}
+                                                onChange={handleArrayState(zone, selectedBlockZones, setSelectedBlockZones)}
+                                                id={zone}
+                                                name={zone}
+                                                value={zone}
+                                            />
+                                        }
+                                        label={zone}
+                                    />
+                                </span>
                             ))}
-                        </Select>
+                        </div>
+                    </div>
+
+                    <div className="attack-wrapper">
+                        <div className="align-right-fields">
+                            <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "20px 45px 20px 0px"
+                            }} 
+                            id="attack-speed">Attack Speed</InputLabel>
+                            <TextField 
+                                className="attack-speed"
+                                    style={{ width: '200px', margin: 'auto' }}
+                                    onChange={(e) => handleChange('cardAttackSpeed', e.target.value)}
+                                    label="speed" 
+                                    variant="outlined" 
+                                    name="attack-speed" 
+                                    type="number"
+                                InputProps={{inputProps: { min: 0, max: 6 }}}
+                            />
+                        </div>
+                        <div className="align-two-rows-one-column">
+                            <InputLabel style={{
+                            alignSelf: "center", 
+                            margin: "20px 0"
+                        }} 
+                            id="attack-zones">Attack Zone</InputLabel>
+                            <span className="unique-values-zones" id="attack-zones-wrapper">
+                                {uniqueZones.sort(customSort).map((zone) => (
+                                    <span key={zone}>
+                                        <FormControlLabel
+                                            style={{ paddingTop: '0', paddingBottom: '10px' }}
+                                            control={
+                                                <Checkbox
+                                                    checked={selectedAttackZones.includes(zone)}
+                                                    onChange={handleArrayState(zone, selectedAttackZones, setSelectedAttackZones)}
+                                                    id={zone}
+                                                    name={zone}
+                                                    value={zone}
+                                                />
+                                            }
+                                        label={zone}
+                                        />
+                                    </span>
+                                ))}
+                            </span>
+                        </div>
+                        <div className="align-right-fields">
+                            <InputLabel style={{
+                                alignSelf: "center", 
+                                margin: "20px 45px 20px 0px"
+                            }} 
+                            id="attack-damage">Attack Damage</InputLabel>
+                            <TextField 
+                                className="attack-damage"
+                                    style={{ width: '200px', margin: 'auto' }}
+                                    onChange={(e) => handleChange('cardDamage', e.target.value)}
+                                    label="damage" 
+                                    variant="outlined" 
+                                    name="attack-damage" 
+                                    type="number"
+                                InputProps={{inputProps: { min: 0, max: 10 }}}
+                            />
+                        </div>
                     </div>
                 </div>
-                
-                <InputLabel style={{
-                            alignSelf: "center", 
-                            margin: "20px 0"
-                        }} 
-                        id="card-abilities">Card Text Abilities</InputLabel>
-                <span className="unique-values" id="ability-wrapper">
-                    {uniqueAbilities.sort().map((ability) => (
-                        <div key={ability}>
-                            <FormControlLabel
-                                style={{ paddingTop: '0', paddingBottom: '10px' }}
-                                control={
-                                    <Checkbox
-                                        checked={selectedAbilities.includes(ability)}
-                                        onChange={handleArrayState(ability, selectedAbilities, setSelectedAbilities)}
-                                        id={ability}
-                                        name={ability}
-                                        value={ability}
-                                    />
-                                }
-                                label={ability}
-                            />
-                        </div>
-                    ))}
-                </span>
-
-                <InputLabel style={{
-                            alignSelf: "center", 
-                            margin: "20px 0"
-                        }} 
-                        id="card-type">Card Type</InputLabel>
-                <span className="unique-values" id="types-wrapper">
-                    {uniqueTypes.sort().map((type) => (
-                        <div key={type}>
-                            <FormControlLabel
-                                style={{ paddingTop: '0', paddingBottom: '10px' }}
-                                control={
-                                    <Checkbox
-                                        checked={selectedTypes.includes(type)}
-                                        onChange={handleArrayState(type, selectedTypes, setSelectedTypes)}
-                                        id={type}
-                                        name={type}
-                                        value={type}
-                                    />
-                                }
-                                label={type}
-                            />
-                        </div>
-                    ))}
-                </span>
-
-                <InputLabel style={{
-                            alignSelf: "center", 
-                            margin: "20px 0"
-                        }} 
-                        id="card-rarity">Card Rarity</InputLabel>
-                <span className="unique-values" id="rarity-wrapper">
-                    {uniqueRarities.sort().map((rarity) => (
-                        <div key={rarity}>
-                            <FormControlLabel
-                                style={{ paddingTop: '0', paddingBottom: '10px' }}
-                                control={
-                                    <Checkbox
-                                        checked={selectedRarities.includes(rarity)}
-                                        onChange={handleArrayState(rarity, selectedRarities, setSelectedRarities)}
-                                        id={rarity}
-                                        name={rarity}
-                                        value={rarity}
-                                    />
-                                }
-                                label={rarity}
-                            />
-                        </div>
-                    ))}
-                </span>
-
-                <InputLabel style={{
-                            alignSelf: "center", 
-                            margin: "20px 0"
-                        }} 
-                        id="card-symbols">Resource Symbols</InputLabel>
-                <span className="unique-values" id="symbol-wrapper">
-                    {uniqueResourceSymbols.sort().map((symbol) => (
-                        <div key={symbol}>
-                            <FormControlLabel
-                                style={{ paddingTop: '0', paddingBottom: '10px' }}
-                                control={
-                                    <Checkbox
-                                        checked={selectedSymbols.includes(symbol)}
-                                        onChange={handleArrayState(symbol, selectedSymbols, setSelectedSymbols)}
-                                        id={symbol}
-                                        name={symbol}
-                                        value={symbol}
-                                    />
-                                }
-                                label={symbol}
-                            />
-                        </div>
-                    ))}
-                </span>
-                
-                <div className="control-difficulty-wrapper">
-                    <div id="control-wrapper">
-                        <InputLabel style={{
-                            alignSelf: "center", 
-                            margin: "20px 0"
-                        }} 
-                        id="control">Control</InputLabel>
-                        <TextField 
-                            style={{ width: '200px', margin: 'auto' }}
-                            onChange={(e) => handleChange('cardControl', e.target.value)}
-                            label="enter control value" 
-                            variant="outlined" 
-                            name="control" 
-                            type="number"
-                            InputProps={{inputProps: { min: 1, max: 6 }}}
-                        />
-                    </div>
-                    <div id="difficulty-wrapper">
-                        <InputLabel style={{
-                                alignSelf: "center", 
-                                margin: "20px 0"
-                        }} 
-                        id="difficulty">Difficulty</InputLabel>
-                        <TextField 
-                            style={{ width: '200px', margin: 'auto' }}
-                            onChange={(e) => handleChange('cardDifficulty', e.target.value)}
-                            label="enter difficulty value" 
-                            variant="outlined" 
-                            name="difficulty" 
-                            type="number"
-                            InputProps={{inputProps: { min: 0, max: 7 }}}
-                        />
-                    </div>
-                </div>
-
-                <InputLabel style={{
-                            alignSelf: "center", 
-                            margin: "20px 0"
-                        }} 
-                        id="keywords">Keywords</InputLabel>
-                <span className="unique-values" id="keywords-wrapper">
-                    {uniqueKeywords.sort().map((keyword) => (
-                        <div key={keyword}>
-                            <FormControlLabel
-                                style={{ paddingTop: '0', paddingBottom: '10px' }}
-                                control={
-                                    <Checkbox
-                                        checked={selectedKeywords.includes(keyword)}
-                                        onChange={handleArrayState(keyword, selectedKeywords, setSelectedKeywords)}
-                                        id={keyword}
-                                        name={keyword}
-                                        value={keyword}
-                                    />
-                                }
-                                label={keyword}
-                            />
-                        </div>
-                    ))}
-                </span>
-
-                <InputLabel style={{
-                            alignSelf: "center", 
-                            margin: "20px 0"
-                        }} 
-                        id="block-modifier">Block Modifer</InputLabel>
-                <span id="block-mod-wrapper">
-                    <TextField 
-                        className="number-input-field"
-                        style={{ width: '200px', margin: 'auto' }}
-                        onChange={(e) => handleChange('cardBlockModifier', e.target.value)}
-                        label="block modifier" 
-                        variant="outlined" 
-                        name="block-modifier" 
-                        type="number"
-                        InputProps={{inputProps: { min: 0, max: 5 }}}
-                />
-                </span>
-
-                <InputLabel style={{
-                            alignSelf: "center", 
-                            margin: "20px 0"
-                        }} 
-                        id="block-zones">Block Zone</InputLabel>
-                <span className="unique-values-zones" id="block-zone-wrapper">
-                    {uniqueZones.sort(customSort).map((zone) => (
-                        <div key={zone}>
-                            <FormControlLabel
-                                style={{ paddingTop: '0', paddingBottom: '10px' }}
-                                control={
-                                    <Checkbox
-                                        checked={selectedBlockZones.includes(zone)}
-                                        onChange={handleArrayState(zone, selectedBlockZones, setSelectedBlockZones)}
-                                        id={zone}
-                                        name={zone}
-                                        value={zone}
-                                    />
-                                }
-                                label={zone}
-                            />
-                        </div>
-                    ))}
-                </span>
-
-                <div className="attack-speed-damage-wrapper">
-                    <div id="attack-speed-wrapper">
-                        <InputLabel style={{
-                                alignSelf: "center", 
-                                margin: "20px 0"
-                        }} 
-                        id="attack-speed">Attack Speed</InputLabel>
-                        <TextField 
-                            className="attack-speed"
-                            style={{ width: '200px', margin: 'auto' }}
-                            onChange={(e) => handleChange('cardAttackSpeed', e.target.value)}
-                            label="speed" 
-                            variant="outlined" 
-                            name="attack-speed" 
-                            type="number"
-                            InputProps={{inputProps: { min: 0, max: 6 }}}
-                        />
-                    </div>
-                    <div id="attack-damage-wrapper">
-                        <InputLabel style={{
-                                alignSelf: "center", 
-                                margin: "20px 0"
-                        }} 
-                        id="attack-damage">Attack Damage</InputLabel>
-                        <TextField 
-                            className="attack-damage"
-                            style={{ width: '200px', margin: 'auto' }}
-                            onChange={(e) => handleChange('cardDamage', e.target.value)}
-                            label="damage" 
-                            variant="outlined" 
-                            name="attack-damage" 
-                            type="number"
-                            InputProps={{inputProps: { min: 0, max: 10 }}}
-                        />
-                    </div>
-                </div>
-                            
-                <InputLabel style={{
-                    alignSelf: "center", 
-                    margin: "20px 0"
-                }} 
-                id="attack-zones">Attack Zones</InputLabel>
-                <span className="unique-values-zones" id="attack-zones-wrapper">
-                    {uniqueZones.sort(customSort).map((zone) => (
-                        <div key={zone}>
-                            <FormControlLabel
-                                style={{ paddingTop: '0', paddingBottom: '10px' }}
-                                control={
-                                    <Checkbox
-                                        checked={selectedAttackZones.includes(zone)}
-                                        onChange={handleArrayState(zone, selectedAttackZones, setSelectedAttackZones)}
-                                        id={zone}
-                                        name={zone}
-                                        value={zone}
-                                    />
-                                }
-                                label={zone}
-                            />
-                        </div>
-                    ))}
-                </span>
-                <span>
+                <span className="btn-wrapper">
                     <Button
                         id="search-btn"
                         style={{ margin: '20px auto', width: '200px', backgroundColor: 'green' }}

@@ -1,14 +1,20 @@
 .results-wrapper {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
     gap: 1rem;
-    margin-top: 2rem;
-    position: relative;
+    margin: 2rem 2rem;
+}
+
+.card-wrapper {
+    background-color: #8d8e8f58;
+    border-radius: 1.5rem;
 }
 
 .results-img-wrapper {
     position: relative;
     display: inline-block;
+    margin-top: 20px;
 }
 
 .results-wrapper img {
@@ -24,13 +30,14 @@
 img:hover {
     position: relative;
     z-index: 1;
-    transform: scale(1.5);
+    transform: scale(1.6);
   }
-
 
 .results-btn-wrapper {
     position: relative;
-    z-index: 0;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    z-index: 0; 
     display: block;
     margin-top: 1rem;
 }

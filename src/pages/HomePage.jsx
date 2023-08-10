@@ -288,10 +288,14 @@ export default function HomePage() {
                                 margin: "20px 0"}} 
                             id="card-name">Card Name</InputLabel>
                         <TextField 
-                            style={{ width: '200px', margin: 'auto' }}
+                            style={{ 
+                                width: '200px', 
+                                margin: 'auto', 
+                                color: 'black'
+                            }}
                             onChange={(e) => setCardName(e.target.value)}
-                            value={cardName}
                             label="enter card name" 
+                            margin="dense"
                             variant="outlined" 
                             name="card-name" 
                             type="text" 

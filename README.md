@@ -1,6 +1,6 @@
-# My Hero Academia CCG Card Management Website
+# Plus Ultra Deck Management
 
-Welcome to the My Hero Academia Collectible Card Game (MHA CCG) Card Management Website! This platform is designed to help you search, build, and manage your cards for the MHA CCG. Whether you're a seasoned player or just starting out, our website provides you with tools to enhance your card collecting and deck-building experience.
+Welcome to the Plus Ultra Deck Management! This platform is designed to help you search, build, and manage your cards for the My Hero Academia Collectible Card Game (MHA CCG). Whether you're a seasoned player or just starting out, this website provides you with tools to enhance your card collecting and deck-building experience.
 
 ## Screenshots
 <details>
@@ -16,7 +16,7 @@ Welcome to the My Hero Academia Collectible Card Game (MHA CCG) Card Management 
 
 ## Getting Started
 
-To get started with the MHA CCG Card Management Website, follow these steps:
+To get started with the Plus Ultra Deck Management, follow these steps:
 
 1. Click the login button on the nav bar to login, otherwise follow the link to sign up.
 2. Navigate yourself to the home page and use the expansive filtering options.
@@ -62,12 +62,12 @@ We are committed to continuously improving your experience on our platform. Futu
 - Integration with social media platforms for sharing decks
 - Real-time notifications for comments, likes, and trending decks
 
-We appreciate your support and feedback as we work to make the MHA CCG Card Management Website an indispensable tool for every MHA CCG enthusiast.
+We appreciate your support and feedback as we work to make Plus Ultra Deck Management an indispensable tool for every MHA CCG enthusiast.
 
 ## Contact Us
 
 If you have any questions, suggestions, or feedback, please don't hesitate to contact me at [Papa Fish](mailto:contact@lukechristophermoore@gmail.com)
 
-Thank you for choosing the My Hero Academia CCG Card Management Website!
+Thank you for choosing Plus Ultra Deck Management!
 
 ---

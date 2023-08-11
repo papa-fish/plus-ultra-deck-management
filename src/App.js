@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import HomePage from './pages/HomePage';
 import ResultsPage from './pages/ResultsPage';
+import ChecklistPage from './pages/ChecklistPage';
 
 import { ReactComponent as ReactLogo } from './logo.svg'
 import './App.css';
@@ -45,6 +46,7 @@ function App() {
         <Route path="/users/login" element={<LoginPage onLogin={login}/>} />
         <Route path="/users/signup" element={<SignUpPage />} />
         <Route path="/results" element={<ResultsPage />} />
+        <Route path="/checklist" element={<ChecklistPage />} />
       </Routes>
     </div>
   );

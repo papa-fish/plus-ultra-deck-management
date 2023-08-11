@@ -1,0 +1,28 @@
+.checklist-grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 1rem 1rem;
+}
+
+.category-wrapper {
+    display: grid;
+    justify-items: start;
+}
+
+.card-columns {
+    margin: 3px 0;
+}
+
+.card-number {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+.amount-owned {
+    margin: 0 10px;
+    width: 30px;
+}
+
+.category-name {
+    margin: 5px 0 5px 82px;
+}
